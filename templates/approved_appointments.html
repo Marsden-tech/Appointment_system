@@ -1,0 +1,37 @@
+{% extends "patient_home.html" %}
+
+{% block title %}Approved Appointments{% endblock %}
+
+{% block content %}
+<div class="table-container">
+<table>
+    <thead>
+        <tr>
+            <th>Date Created</th>
+            <th>Doctor First Name</th>
+            <th>Doctor Last Name</th>
+            <th>Email Address</th>
+            <th>Phone</th>
+            <th>Clinic</th>
+            <th>Location</th>
+            <th>Appointment date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in rows %}
+        <tr>
+            <td>{{ item.created_at }}</td>
+            <td>{{ item.firstname }}</td>
+            <td>{{ item.lastname }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.contact }}</td>
+            <td>{{ item.clinic }}</td>
+            <td>{{ item.location }}</td>
+            <td>{{ item.appointment_date }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+{% endblock %}

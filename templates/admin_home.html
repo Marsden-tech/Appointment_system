@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        nav {
+            background-color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover {
+            background-color: #111;
+        }
+        
+        .user {
+            float: right;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .lo{
+            float: right;
+        }
+
+        footer {
+            background-color: #f0f0f0;
+            color: #666;
+            font-size: 12px;
+            text-align: center;
+            padding: 10px;
+            bottom: 0;
+            width: 98%;
+            height: 50px;
+            position: absolute;
+        }
+
+        .container {
+            min-height: 100%;
+            position: relative;
+        }
+
+        main {
+            padding-bottom: 50px;
+            margin-top: 10px;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        .edit-link {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #5adbb5;
+            color: #fff;
+            border: none;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 4px;
+        }
+
+        .edit-link:hover {
+            background-color: #33b249;
+        }
+
+        .delete-button {
+            background-color: #ff0000;
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .delete-button:hover {
+            background-color: #cc0000;
+        }
+
+        .delete-button:focus {
+            box-shadow: 0 0 0 2px #ff0000;
+            outline: none;
+        }
+
+        .delete-button:active {
+            background-color: #b30000;
+        }
+    </style>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('new_doctor') }}">New Doctor</a></li>
+            <li><a href="{{ url_for('view_doctor') }}">View Doctors</a></li>
+            <li><a href="{{ url_for('new_admin') }}">New Admin</a></li>
+            
+            {% if session.admin_id %}
+            <li class="user">Welcome, {{admin_name}}</li>
+            <li class="lo"><a href="{{ url_for('admin_logout') }}">Log out</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <main>
+        <div class="container">
+        {% block content %}{% endblock %}
+        </div>
+    </main>
+    <footer>
+        <p>&copy; TIBA 2023</p>
+    </footer>
+
+</body>
+</html>

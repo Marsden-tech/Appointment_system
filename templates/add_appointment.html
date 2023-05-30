@@ -1,0 +1,22 @@
+{% extends "patient_home.html" %}
+
+{% block title %}View Doctors{% endblock %}
+
+{% block content %}
+
+<form method="POST" action="{{ url_for('add_appointment', doc_id=item.id) }}">
+
+<label for="doc_id">Doctor ID:</label>
+<input type="text" id="firstname" name="firstname" value="{{ item.id }}" required><br>
+
+<label for="doc_id">Patient ID:</label>
+<input type="text" id="firstname" name="firstname" value="{{ patient }}" required><br>
+
+
+<label for="DOP">Date of Appointment: </label>
+<input type="date" id="DOP" name="date" required>
+
+<button type="submit">Request Appointment</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends "patient_home.html" %}
+
+{% block title %}View Doctors{% endblock %}
+
+{% block content %}
+<input type="text" id="filterInput" placeholder="Search by Name,Speciality or location" size="40">
+<table id="docTable">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Gender</th>
+            <th>Email address</th>
+            <th>Phone</th>
+            <th>Speciality</th>
+            <th>Clinic Name</th>
+            <th>Clinic Location</th>
+            <th>Working days</th>
+            <th>Working hours</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in data %}
+        <tr>
+            <td>{{ item.firstname }}</td>
+            <td>{{ item.lastname }}</td>
+            <td>{{ item.gender }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.contact }}</td>
+            <td>{{ item.speciality }}</td>
+            <td>{{ item.clinic }}</td>
+            <td>{{ item.location }}</td>
+            <td>{{ item.workingdays }}</td>
+            <td>{{ item.workinghours }}</td>
+            <td>
+                <a href="{{ url_for('add_appointment', doc_id=item.id) }}" class="action-button">Schedule Appointment</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<script>
+    var input = document.getElementById("filterInput");
+    var table = document.getElementById("docTable");
+
+    var targetColumns = [0, 1, 5, 7];
+
+    input.addEventListener("input",filterTable);
+
+    function filterTable() {
+        var filter = input.value.trim();
+        var regex = new RegExp(filter, "i");
+
+        var rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
+
+        for (var i = 0; i < rows.length; i++) {
+            var cells = rows[i].getElementsByTagName("td");
+            var foundMatch = false;
+
+            for (var j = 0; j < targetColumns.length; j++) {
+                var columnIndex = targetColumns[j];
+                var cell = cells[columnIndex];
+                var cellText = cell.innerText || cell.textContent;
+                if (regex.test(cellText)) {
+                    foundMatch = true;
+                    cell.classList.add("highlight")
+                }
+                else {
+                    cell.classList.remove("highlight")
+                }
+            }
+
+            if (foundMatch) {
+                rows[i].style.display = "";
+            }
+            else {
+                rows[i].style.display = "none";
+            }
+        }
+    }
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIBA APPOINTMENT SCHEDULING</title>
+</head>
+<body>
+
+    <H1>
+        WELCOME TO TIBA APPOINTMENT SCHEDULING SYSTEM
+    </H1>
+
+    <p>
+        In Tiba, we understand that finding the right time to schedule appointments with your busy schedule can be difficult. Our website aims at simplifying the process and making appointments scheduling as easy as possible. With our user friendly interface, you can quickly search for available consultants and make appointments.  
+    </p>
+
+    <p>
+        Join our community of satisfied customers and start scheduling your appointments today!!
+    </p>
+
+    <p>
+        To access our services you need to log in or sign up. If you already have an account click the login button below. If you don't have an account, please click the sign up button where you will be redirected to our registrartion page. Thank you for choosing our website. We look forward to serving you!
+    </p>
+
+    <a href="{{ url_for('doctor_login') }}"><button><b>Doctor Login</b></button></a>
+    <a href="{{ url_for('patient_login') }}"><button><b>Patient Login</b></button></a>
+    <a href="{{ url_for('signup') }}"><button><b>SignUp</b></button></a>
+    <a href="{{ url_for('admin_login') }}"><button><b>Admin Login</b></button></a>
+</body>
+</html>

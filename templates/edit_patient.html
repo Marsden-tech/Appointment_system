@@ -1,0 +1,32 @@
+{% extends "patient_home.html" %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block content %}
+
+<form method="POST">
+    <label for="firstname">First Name:</label>
+    <input type="text" id="firstname" name="firstname" value="{{ item.firstname }}" required><br>
+
+    <label for="lastname">Last Name:</label>
+    <input type="text" id="lastname" name="lastname" value="{{ item.lastname }}" required><br>
+
+
+    <label for="DOB">Date of Birth: </label>
+    <input type="date" id="DOB" name="DOB" value="{{ item.dob }}" required><br>
+
+    <label for="email">Email address: </label>
+    <input type="email" id="emailaddress" name="emailaddress" value="{{ item.email }}" required><br>
+
+    <label for="contact">Phone Number: </label>
+    <input type="tel" id="contact" name="contact" value="{{ item.contact }}" required><br>
+
+    <label for="address">Home Address:</label>
+    <textarea id="address" name="address" rows="4" cols="50">{{ item.address }}</textarea><br>
+
+    
+
+    <button type="submit">Save Changes</button>
+</form>
+
+{% endblock %}

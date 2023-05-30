@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background: #222;
+        }
+
+        .login-container {
+            width: 400px;
+            height: 270px;
+            background: #fff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        form{
+            display: flex;
+            flex-direction: column;
+        }
+
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+        }
+        
+        button {
+            background: #333;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        .home-button{
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #5adbb5;
+            color: #fff;
+            border: none;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .home-button:hover {
+            background-color: #33b249;
+        }
+
+    </style>
+    <title>Admin Login Page</title>
+</head>
+<body>
+    <div class="login-container">
+    <h2>ADMIN LOGIN PAGE</h2>
+    {% if error %}
+    <p style="color: rgb(174, 67, 67);">{{error}}</p>
+    {% endif %}
+
+    <form action="{{ url_for('admin_login') }}" method="POST">
+        <input type="text" id="username" name="username" placeholder="USERNAME" required>
+
+        <input type="password" id="password" name="password" placeholder="PASSWORD" required>
+
+        <button type="submit">Log in</button>
+    </form>
+    <a href="{{url_for('index')}}" class="home-button">Home Page</a>
+    </div>
+</body>
+</html>

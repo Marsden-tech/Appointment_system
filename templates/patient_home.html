@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        nav {
+            background-color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover {
+            background-color: #111;
+        }
+        
+        .user {
+            float: right;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .lo{
+            float: right;
+        }
+
+        footer {
+            background-color: #f0f0f0;
+            color: #666;
+            font-size: 12px;
+            text-align: center;
+            padding: 10px;
+            bottom: 0;
+            width: 98%;
+            height: 50px;
+            position: absolute;
+        }
+
+        .highlight {
+            background-color: aqua;
+        }
+
+        #filterInput {
+            padding: 10px;
+            border-radius: 20px;
+            background-color: #f2f2f2;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+            color: #333;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            margin-bottom: 20px;
+            margin-top: 10px;
+            margin-left: 160px;
+        }
+
+        #filterInput:focus {
+            outline: none;
+            background-color: #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .action-button {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #5adbb5;
+            color: #fff;
+            border: none;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .action-button:hover {
+            background-color: #33b249;
+        }
+        main{
+            margin-top: 10px;
+        }
+
+        .table-container {
+            height: 600px;
+            overflow: auto;
+        }
+
+    </style>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('view_doctors') }}">View Doctors</a></li>
+            <li><a href="{{ url_for('pending_appointments') }}">Pending appointments</a></li>
+            <li><a href="{{ url_for('approved_appointments') }}">Approved appointments</a></li>
+            <li><a href="{{ url_for('previous_appointments') }}">Previous appointments</a></li>
+            <li><a href="{{ url_for('edit_patient') }}">Edit details</a></li>
+            
+            {% if session.user_id %}
+            <li class="user">Welcome, {{username}}</li>
+            <li class="lo"><a href="{{ url_for('patient_logout') }}">Log out</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; TIBA 2023</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        nav {
+            background-color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover {
+            background-color: #111;
+        }
+        
+        .user {
+            float: right;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .lo{
+            float: right;
+        }
+
+        footer {
+            background-color: #f0f0f0;
+            color: #666;
+            font-size: 12px;
+            text-align: center;
+            padding: 10px;
+            bottom: 0;
+            width: 98%;
+            height: 50px;
+            position: absolute;
+        }
+    </style>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('doctor_appointments') }}">Pending appointments</a></li>
+            <li><a href="{{ url_for('doc_approved_appointments') }}">Approved appointments</a></li>
+            <li><a href="{{ url_for('apptmt_history') }}">Appointment history</a></li>
+            <li><a href="{{ url_for('edit_doctor') }}">Edit details</a></li>
+            
+            {% if session.doctor_id %}
+            <li class="user">Welcome, {{docname}}</li>
+            <li class="lo"><a href="{{ url_for('doctor_logout') }}">Log out</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; TIBA 2023</p>
+    </footer>
+
+</body>
+</html>

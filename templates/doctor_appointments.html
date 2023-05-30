@@ -1,0 +1,44 @@
+{% extends "doctor_home.html" %}
+
+{% block title %}Pending appointments{% endblock %}
+
+{% block content %}
+
+<table>
+    <thead>
+        <tr>
+            <th>Date Created</th>
+            <th>Patient First Name</th>
+            <th>Patient Last Name</th>
+            <th>Email</th>
+            <th>Home address</th>
+            <th>Contact</th>
+            <th>Appointment date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in rows %}
+        <tr>
+            <td>{{ item.created_at }}</td>
+            <td>{{ item.firstname }}</td>
+            <td>{{ item.lastname }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.address }}</td>
+            <td>{{ item.contact }}</td>
+            <td>{{ item.appointment_date }}</td>
+            <td>
+            <form method="POST" action="{{ url_for('approve_appointment', id=item.id) }}">
+                <button type="submit" onclick="return confirm('Are you sure you want to approve this?')">Approve</button>
+            </form>
+            <br>
+            <form method="POST" action="{{ url_for('decline_appointment', id=item.id) }}">
+                <button type="submit" onclick="return confirm('Are you sure you want to decline this?')">Decline</button>
+            </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

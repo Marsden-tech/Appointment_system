@@ -1,0 +1,34 @@
+{% extends "doctor_home.html" %}
+
+{% block title %}Appointment History{% endblock %}
+
+{% block content %}
+
+<table>
+    <thead>
+        <tr>
+            <th>Date Created</th>
+            <th>Patient First Name</th>
+            <th>Patient Last Name</th>
+            <th>Email</th>
+            <th>Home address</th>
+            <th>Contact</th>
+            <th>Appointment date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in rows %}
+        <tr>
+            <td>{{ item.created_at }}</td>
+            <td>{{ item.firstname }}</td>
+            <td>{{ item.lastname }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.address }}</td>
+            <td>{{ item.contact }}</td>
+            <td>{{ item.appointment_date }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
